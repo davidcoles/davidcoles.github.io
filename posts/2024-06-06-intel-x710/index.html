@@ -63,7 +63,7 @@
   "headline": "XDP and the Intel X710",
   "description" : "Recently we committed to using the vc5 load balancer (what I wrote) as part of the refresh of our edge infrastructure at work. We have been using it for some time for small, lower priority services, deployed on virtual machines rather than hardware. It speaks BGP to avertise healthy services to the network routers and works well, but VMs won\u0026rsquo;t scale to the demands of our main public facing services.",
   "inLanguage" : "en",
-  "wordCount":  836 ,
+  "wordCount":  839 ,
   "datePublished" : "2024-07-06T00:00:00\u002b00:00",
   "dateModified" : "2024-07-06T00:00:00\u002b00:00",
   "image" : "http:\/\/localhost:1313\/img\/avatar-icon.png",
@@ -273,11 +273,11 @@ only steers incoming traffic and 99% of this is simply TCP ACK
 packets. The X710 seemed like the natural progession from the X520, it
 uses the i40e driver rather than the X520&rsquo;s ixgbe, but both have
 native XDP support.</p>
-<p>After initial testing we came to movingthe servers to the colocation
-facilities where they will operate, but we had overlooked that we&rsquo;d
-have to change the media type of the network interfaces from 10GBASE-T
-to SFP+ fibre modules, so we got replacement cards which only differed
-in this respect and shipped them out.</p>
+<p>After initial testing the time came to move the servers to the
+colocation facilities where they will operate, but we had overlooked
+that we would have to change the media type of the network interfaces
+from 10GBASE-T to SFP+ fibre modules, so we got replacement cards
+which only differed in this respect and shipped them out.</p>
 <p>The first issue that we ecountered was the X710 would not always be
 able to get a link. The card didn&rsquo;t seem to be able to negotiate a
 carrier with the switch. We&rsquo;re using partitioned 40Gbps ports on the
