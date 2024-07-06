@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>All the right words, but not necessarily in the right order</title>
-    <link>http://localhost:1313/</link>
+    <link>https://davidcoles.github.io/</link>
     <description>Recent content on All the right words, but not necessarily in the right order</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 06 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://davidcoles.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>XDP and the Intel X710</title>
-      <link>http://localhost:1313/posts/2024-06-06-intel-x710/</link>
+      <link>https://davidcoles.github.io/posts/2024-06-06-intel-x710/</link>
       <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2024-06-06-intel-x710/</guid>
+      <guid>https://davidcoles.github.io/posts/2024-06-06-intel-x710/</guid>
       <description>Recently we committed to using the vc5 load balancer (what I wrote) as part of the refresh of our edge infrastructure at work. We have been using it for some time for small, lower priority services, deployed on virtual machines rather than hardware. It speaks BGP to avertise healthy services to the network routers and works well, but VMs won&amp;rsquo;t scale to the demands of our main public facing services.</description>
     </item>
   </channel>
