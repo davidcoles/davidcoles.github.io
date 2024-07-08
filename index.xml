@@ -10,9 +10,9 @@
     <atom:link href="https://davidcoles.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>XDP and the Intel X710</title>
-      <link>https://davidcoles.github.io/posts/2024-06-06-intel-x710/</link>
+      <link>https://davidcoles.github.io/posts/2024-07-06-intel-x710/</link>
       <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://davidcoles.github.io/posts/2024-06-06-intel-x710/</guid>
+      <guid>https://davidcoles.github.io/posts/2024-07-06-intel-x710/</guid>
       <description>Recently we committed to using the vc5 load balancer (what I wrote) as part of the refresh of our edge infrastructure at work. We have been using it for some time for small, lower priority services, deployed on virtual machines rather than hardware. It speaks BGP to advertise healthy services to the network routers and works well, but VMs won&amp;rsquo;t scale to the demands of our main public facing services.</description>
     </item>
   </channel>
