@@ -12,8 +12,7 @@
 
       <title>XDP and the Intel X710 - I done a blog</title>
 
-  <meta name="description" content="A tale of woe">
-  <meta name="author" content="David Coles"/><script type="application/ld+json">
+  <meta name="description" content="A tale of woe"><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -58,14 +57,14 @@
   "@context": "http://schema.org",
   "@type": "Article",
   "author": {
-    "name" : "David Coles"
+    "name" : ""
   },
   "headline": "XDP and the Intel X710",
   "description" : "Recently we committed to using the vc5 load balancer (what I wrote) as part of the refresh of our edge infrastructure at work. We have been using it for some time for small, lower priority services, deployed on virtual machines rather than hardware. It speaks BGP to advertise healthy services to the network routers and works well, but VMs won\u0026rsquo;t scale to the demands of our main public facing services.",
   "inLanguage" : "en",
-  "wordCount":  839 ,
+  "wordCount":  847 ,
   "datePublished" : "2024-07-06T00:00:00\u002b00:00",
-  "dateModified" : "2024-07-06T00:00:00\u002b00:00",
+  "dateModified" : "2024-12-26T00:00:00\u002b00:00",
   "image" : "https:\/\/davidcoles.github.io\/img\/avatar-icon.png",
   "keywords" : [ "X710, XDP, eBPF" ],
   "mainEntityOfPage" : "https:\/\/davidcoles.github.io\/posts\/2024-07-06-intel-x710\/",
@@ -335,6 +334,7 @@ in generic mode doesn&rsquo;t seem affected, so maybe it is some bug in the
 i40e driver? If you have any insights and are able to raise an issue
 on the <a href="https://github.com/davidcoles/vc5">GitHub repository</a> I&rsquo;d be
 most grateful.</p>
+<p><a href="/posts/2024-12-26-intel-x710-update/">Update</a>; the issues experienced appear to be fixed!</p>
 
 
         
@@ -411,6 +411,17 @@ most grateful.</p>
 
         
           
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/posts/2024-12-26-intel-x710-update/">Intel X710 Update</a></li>
+                
+              </ul>
 
           
         
@@ -419,6 +430,10 @@ most grateful.</p>
       
         <ul class="pager blog-pager">
           
+          
+            <li class="next">
+              <a href="https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/" data-toggle="tooltip" data-placement="top" title="Intel X710 Update">Next Post &rarr;</a>
+            </li>
           
         </ul>
       
@@ -441,26 +456,6 @@ most grateful.</p>
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <ul class="list-inline text-center footer-links">
           
-              <li>
-		
-		  <a href="https://github.com/davidcoles" title="GitHub">
-		
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li>
-		
-		  <a href="https://linkedin.com/in/david-coles-b1009678" title="LinkedIn">
-		
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
           
           <li>
             <a href="" title="RSS">
@@ -473,10 +468,6 @@ most grateful.</p>
           
         </ul>
         <p class="credits copyright text-muted">
-          
-            
-              <a href="davidcoles.github.io">David Coles</a>
-            
           
 
           &nbsp;&bull;&nbsp;&copy;

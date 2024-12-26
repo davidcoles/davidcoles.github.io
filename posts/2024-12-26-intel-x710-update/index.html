@@ -10,9 +10,11 @@
  
 
 
-      <title>Overview of all pages with the tag #Tags - I done a blog</title>
+      <title>Intel X710 Update - I done a blog</title>
 
-  <meta name="description" content="Overview of all pages with the tag #Tags, such as: EBPF"><script type="application/ld+json">
+  <meta name="description" content="As a happy conclusion to the previous post, it seems that updating the version of Ubuntu to 24.04 resolved the outstanding issues.
+When the hardware was initially commissioned 22.04 was the current LTS version, and I&rsquo;m a little wary of using an LTS version which is only a month or two out of the gate, so I didn&rsquo;t immediately switch.
+As it became clear that were still some serious issues with the X710 cards which we were unable to fully mitigate then rebuilding the servers with Noble Numbat seemed like the only sensible choice."><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -32,14 +34,68 @@
   
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/davidcoles.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/davidcoles.github.io\/posts\/2024-12-26-intel-x710-update\/",
+          "name": "Intel x710 update"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "Intel X710 Update",
+  "description" : "As a happy conclusion to the previous post, it seems that updating the version of Ubuntu to 24.04 resolved the outstanding issues.\nWhen the hardware was initially commissioned 22.04 was the current LTS version, and I\u0026rsquo;m a little wary of using an LTS version which is only a month or two out of the gate, so I didn\u0026rsquo;t immediately switch.\nAs it became clear that were still some serious issues with the X710 cards which we were unable to fully mitigate then rebuilding the servers with Noble Numbat seemed like the only sensible choice.",
+  "inLanguage" : "en",
+  "wordCount":  273 ,
+  "datePublished" : "2024-12-26T00:00:00\u002b00:00",
+  "dateModified" : "2024-12-26T00:00:00\u002b00:00",
+  "image" : "https:\/\/davidcoles.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "X710, XDP, eBPF" ],
+  "mainEntityOfPage" : "https:\/\/davidcoles.github.io\/posts\/2024-12-26-intel-x710-update\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/davidcoles.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/davidcoles.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
 
-<meta property="og:title" content="Tags" />
+
+<meta property="og:title" content="Intel X710 Update" />
+<meta property="og:description" content="As a happy conclusion to the previous post, it seems that updating the version of Ubuntu to 24.04 resolved the outstanding issues.
+When the hardware was initially commissioned 22.04 was the current LTS version, and I&rsquo;m a little wary of using an LTS version which is only a month or two out of the gate, so I didn&rsquo;t immediately switch.
+As it became clear that were still some serious issues with the X710 cards which we were unable to fully mitigate then rebuilding the servers with Noble Numbat seemed like the only sensible choice.">
 <meta property="og:image" content="https://davidcoles.github.io/img/avatar-icon.png" />
-<meta property="og:url" content="https://davidcoles.github.io/tags/" />
+<meta property="og:url" content="https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="All the right words, but not necessarily in the right order" />
 
-  <meta name="twitter:title" content="Tags" />
+  <meta name="twitter:title" content="Intel X710 Update" />
+  <meta name="twitter:description" content="As a happy conclusion to the previous post, it seems that updating the version of Ubuntu to 24.04 resolved the outstanding issues.
+When the hardware was initially commissioned 22.04 was the current …">
   <meta name="twitter:image" content="https://davidcoles.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://davidcoles.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -166,9 +222,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="tags-heading">
+            <div class="posts-heading">
               
-                <h1>Tags</h1>
+                <h1>Intel X710 Update</h1>
               
               
                 <hr class="small">
@@ -185,95 +241,151 @@
 
 
     
-
-
-
 <div class="container" role="main">
-  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    <article class="post-preview">
-      <div class="panel-group" id="accordion">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>As a happy conclusion to the <a href="/posts/2024-07-06-intel-x710/">previous post</a>, it seems that updating the version
+of Ubuntu to 24.04 resolved the outstanding issues.</p>
+<p>When the hardware was initially commissioned 22.04 was the current LTS
+version, and I&rsquo;m a little wary of using an LTS version which is only a
+month or two out of the gate, so I didn&rsquo;t immediately switch.</p>
+<p>As it became clear that were still some serious issues with the X710
+cards which we were unable to fully mitigate then rebuilding the
+servers with <a href="https://releases.ubuntu.com/noble/">Noble Numbat</a> seemed
+like the only sensible choice.</p>
+<p>Subsequently, I&rsquo;ve not seen an issue with XDP hooks being lost when renegotiating
+links with the switches, and the servers are each happily handling hundreds
+of megabits per second of ingress traffic (which corresponds to tens
+of gigabits/s of data served to the clients - <a href="https://www.loadbalancer.org/blog/direct-server-return-is-simply-awesome-and-heres-why/">DSR is simply
+awesome</a>)
+without a hitch, including
+<a href="https://en.wikipedia.org/wiki/Multi-chassis_link_aggregation_group">LACP/MLAG</a>. I
+guess there was something in the driver module which received
+attention in later kernels.</p>
+<p>There was a brief squeaky bum time moment after bringing the new
+hardware into production when connections were failing at peak hours, but
+this turned out to a be a traffic policer policy which had not been
+updated to include a new virtual address for a service during
+migration.</p>
+<p>I&rsquo;m still a little suspicious of the X710 card given other&rsquo;s bad
+experiences with it, and I would give serious consideration to
+auditioning a Broadcom chipset if we were deploying a greenfield
+datacentre, but as everything has been quiet so far over the Christmas/New
+Year change freeze period (which co-incides with a couple of weeks of annual
+leave), I&rsquo;m sanguine enough.</p>
+
+
         
-          <div class="panel panel-default">
-            <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseebpf" data-parent="#accordion">
-                <div class="panel-heading" id="headerebpf">
-                  <h4 class="panel-title">
-                      ebpf
-                    <span class="badge">2</span>
-                  </h4>
-                </div>
-            </a>
-            <div id="collapseebpf" class="panel-collapse collapse">
-              <div class="panel-body">
-                
-                <a href="https://davidcoles.github.io/tags/ebpf/" class="list-group-item view-all">
-                View all</a>
-                <div class="list-group">
-                  
-                    <a href="https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/" class="list-group-item">Intel X710 Update</a>
-                  
-                    <a href="https://davidcoles.github.io/posts/2024-07-06-intel-x710/" class="list-group-item">XDP and the Intel X710</a>
-                  
-                </div>
-              </div>
-            </div>
+          <div class="blog-tags">
+            
+              
+              <a href="https://davidcoles.github.io/tags/x710/">X710</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/xdp/">XDP</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/ebpf/">eBPF</a>&nbsp;
+            
           </div>
         
-          <div class="panel panel-default">
-            <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsex710" data-parent="#accordion">
-                <div class="panel-heading" id="headerx710">
-                  <h4 class="panel-title">
-                      x710
-                    <span class="badge">2</span>
-                  </h4>
-                </div>
-            </a>
-            <div id="collapsex710" class="panel-collapse collapse">
-              <div class="panel-body">
-                
-                <a href="https://davidcoles.github.io/tags/x710/" class="list-group-item view-all">
-                View all</a>
-                <div class="list-group">
-                  
-                    <a href="https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/" class="list-group-item">Intel X710 Update</a>
-                  
-                    <a href="https://davidcoles.github.io/posts/2024-07-06-intel-x710/" class="list-group-item">XDP and the Intel X710</a>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
+
         
-          <div class="panel panel-default">
-            <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsexdp" data-parent="#accordion">
-                <div class="panel-heading" id="headerxdp">
-                  <h4 class="panel-title">
-                      xdp
-                    <span class="badge">2</span>
-                  </h4>
-                </div>
-            </a>
-            <div id="collapsexdp" class="panel-collapse collapse">
-              <div class="panel-body">
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
                 
-                <a href="https://davidcoles.github.io/tags/xdp/" class="list-group-item view-all">
-                View all</a>
-                <div class="list-group">
-                  
-                    <a href="https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/" class="list-group-item">Intel X710 Update</a>
-                  
-                    <a href="https://davidcoles.github.io/posts/2024-07-06-intel-x710/" class="list-group-item">XDP and the Intel X710</a>
-                  
-                </div>
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2024-12-26-intel-x710-update%2f&amp;text=Intel%20X710%20Update&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2024-12-26-intel-x710-update%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2024-12-26-intel-x710-update%2f&amp;title=Intel%20X710%20Update" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2024-12-26-intel-x710-update%2f&amp;title=Intel%20X710%20Update" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2024-12-26-intel-x710-update%2f&amp;title=Intel%20X710%20Update" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2024-12-26-intel-x710-update%2f&amp;description=Intel%20X710%20Update" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
               </div>
-            </div>
-          </div>
+            </section>
         
-      </div>
-    </article>
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/posts/2024-07-06-intel-x710/">XDP and the Intel X710</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://davidcoles.github.io/posts/2024-07-06-intel-x710/" data-toggle="tooltip" data-placement="top" title="XDP and the Intel X710">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
   </div>
 </div>
-
-
 
       
 <footer>
@@ -285,7 +397,7 @@
           
           
           <li>
-            <a href="/tags/index.xml" title="RSS">
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
