@@ -6,7 +6,7 @@
     <description>Recent content in Tags on All the right words, but not necessarily in the right order</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://davidcoles.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>EBPF</title>
@@ -16,10 +16,45 @@
       <description></description>
     </item>
     <item>
-      <title>X710</title>
-      <link>https://davidcoles.github.io/tags/x710/</link>
+      <title>FOU</title>
+      <link>https://davidcoles.github.io/tags/fou/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://davidcoles.github.io/tags/x710/</guid>
+      <guid>https://davidcoles.github.io/tags/fou/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GRE</title>
+      <link>https://davidcoles.github.io/tags/gre/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/gre/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GUE</title>
+      <link>https://davidcoles.github.io/tags/gue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/gue/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IP-in-IP</title>
+      <link>https://davidcoles.github.io/tags/ip-in-ip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/ip-in-ip/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IPv6</title>
+      <link>https://davidcoles.github.io/tags/ipv6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/ipv6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vc5</title>
+      <link>https://davidcoles.github.io/tags/vc5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/vc5/</guid>
       <description></description>
     </item>
     <item>
@@ -27,6 +62,20 @@
       <link>https://davidcoles.github.io/tags/xdp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://davidcoles.github.io/tags/xdp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Xvs</title>
+      <link>https://davidcoles.github.io/tags/xvs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/xvs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>X710</title>
+      <link>https://davidcoles.github.io/tags/x710/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/tags/x710/</guid>
       <description></description>
     </item>
   </channel>

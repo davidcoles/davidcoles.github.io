@@ -6,8 +6,15 @@
     <description>Recent content on All the right words, but not necessarily in the right order</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://davidcoles.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The IPv6-man cometh</title>
+      <link>https://davidcoles.github.io/posts/2025-07-31-the-ipv6-man-cometh/</link>
+      <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://davidcoles.github.io/posts/2025-07-31-the-ipv6-man-cometh/</guid>
+      <description>My load balancing software vc5 has recently aquired support for IPv6 and layer 3 DSR backend servers. As well as bringing a 21st century internetworking protocol to the table this means that the restriction of having to keep all backend servers on VLANs which are directly attached to the load balancer has been removed.&#xA;To prevent the routing loop that would occur if the original ingress packets were fed back into the router, the incoming packets need to be encapsualated with a tunneling protocol.</description>
+    </item>
     <item>
       <title>Intel X710 Update</title>
       <link>https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/</link>

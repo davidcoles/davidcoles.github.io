@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>The IPv6-man cometh - I done a blog</title>
+
+  <meta name="description" content="Layer 3 encapsulation and IPv6 supported added to vc5/xvs"><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "All the right words, but not necessarily in the right order",
+    
+    "url": "https:\/\/davidcoles.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/davidcoles.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/davidcoles.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/davidcoles.github.io\/posts\/2025-07-31-the-ipv6-man-cometh\/",
+          "name": "The ipv6 man cometh"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : ""
+  },
+  "headline": "The IPv6-man cometh",
+  "description" : "My load balancing software vc5 has recently aquired support for IPv6 and layer 3 DSR backend servers. As well as bringing a 21st century internetworking protocol to the table this means that the restriction of having to keep all backend servers on VLANs which are directly attached to the load balancer has been removed.\nTo prevent the routing loop that would occur if the original ingress packets were fed back into the router, the incoming packets need to be encapsualated with a tunneling protocol.",
+  "inLanguage" : "en",
+  "wordCount":  665 ,
+  "datePublished" : "2025-07-31T00:00:00\u002b00:00",
+  "dateModified" : "2025-07-31T00:00:00\u002b00:00",
+  "image" : "https:\/\/davidcoles.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "vc5, xvs, XDP, eBPF, IPv6, IP-in-IP, GRE, FOU, GUE" ],
+  "mainEntityOfPage" : "https:\/\/davidcoles.github.io\/posts\/2025-07-31-the-ipv6-man-cometh\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/davidcoles.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/davidcoles.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+
+<meta property="og:title" content="The IPv6-man cometh" />
+<meta property="og:description" content="Layer 3 encapsulation and IPv6 supported added to vc5/xvs">
+<meta property="og:image" content="https://davidcoles.github.io/img/avatar-icon.png" />
+<meta property="og:url" content="https://davidcoles.github.io/posts/2025-07-31-the-ipv6-man-cometh/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="All the right words, but not necessarily in the right order" />
+
+  <meta name="twitter:title" content="The IPv6-man cometh" />
+  <meta name="twitter:description" content="Layer 3 encapsulation and IPv6 supported added to vc5/xvs">
+  <meta name="twitter:image" content="https://davidcoles.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://davidcoles.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.126.2">
+  <link rel="alternate" href="https://davidcoles.github.io/index.xml" type="application/rss+xml" title="All the right words, but not necessarily in the right order"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://davidcoles.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://davidcoles.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://davidcoles.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://davidcoles.github.io/">All the right words, but not necessarily in the right order</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="All the right words, but not necessarily in the right order" href="https://davidcoles.github.io/">
+            <img class="avatar-img" src="https://davidcoles.github.io/img/avatar-icon.png" alt="All the right words, but not necessarily in the right order" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>The IPv6-man cometh</h1>
+              
+              
+                <hr class="small">
+              
+              
+                
+                  <h2 class="posts-subheading">Layer 3 encapsulation and IPv6 supported added to vc5/xvs</h2>
+                
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>My load balancing software <a href="https://github.com/davidcoles/vc5">vc5</a>
+has recently aquired support for IPv6 and layer 3 DSR backend
+servers. As well as bringing a 21st century internetworking protocol
+to the table this means that the restriction of having to keep all
+backend servers on VLANs which are directly attached to the load
+balancer has been removed.</p>
+<p>To prevent the routing loop that would occur if the original ingress
+packets were fed back into the router, the incoming packets need to be
+encapsualated with a tunneling protocol. This adds an IP header (v4 or
+v6 depending on the backend server&rsquo;s address family) and an
+encapsulation protocol header (unless a simple IP-in-IP scheme is
+being used).</p>
+<p>Supported protocols are
+<a href="https://en.wikipedia.org/wiki/IP_in_IP">IP-in-IP</a> (plus the
+<a href="https://en.wikipedia.org/wiki/6in4">6in4</a>,
+<a href="https://en.wikipedia.org/wiki/4in6">4in6</a> and 6in6 variants),
+<a href="https://en.wikipedia.org/wiki/Generic_routing_encapsulation">GRE</a>,
+and <a href="https://www.netdevconf.org/0.1/sessions/11.html">FOU/GUE</a>. Each
+has pros and cons, different levels of support by backend server
+operating systems features such as receive side scaling benefits.</p>
+<p>Because packets need to be extended to support the extra headers,
+provision needs to be made for hitting up against the Maximum
+Transmission Unit (MTU) limits of the network segments. ICMP
+notifications may need to be sent to the client to advise it to send
+smaller packets, as well as dealing with similar notifications from
+intermediate systems as described on the excellent <a href="https://blog.cloudflare.com/path-mtu-discovery-in-practice/">Cloudflare
+blog</a>.</p>
+<p>I think that I have catered for the various scenarios, but now it is
+time to soak test the new release and see where there might be
+deficiencies.</p>
+<p>Using encapsulation for routing packets to backend servers makes vc5
+(and the lower level <a href="https://github.com/davidcoles/xvs">xvs</a> library
+that it uses) more similar to <a href="https://engineering.fb.com/2018/05/22/open-source/open-sourcing-katran-a-scalable-network-load-balancer/">Facebook&rsquo;s
+Katran</a>,
+although unlike Katran it still has the ability to employ layer 2 DSR
+balancing as needed, which is still a requirement for my own use cases.</p>
+<p>Due to limitations in the
+<a href="https://www.datadoghq.com/blog/xdp-intro/">eBPF/XDP</a> implementation
+in older kernels, development work is now carried out on Ubuntu 24.04
+(kernel 6.14), and older releases probably won&rsquo;t run the balancer. vc5
+will compile and run on my Raspberry Pi running Debian Bookworm with
+the 6.12.34+rpt-rpi-v8 kernel, but the size of flow tracking tables
+needs to be set very low (eg. 100) as there is precious little memory
+available. Building the eBPF object file on the Pi wasn&rsquo;t working for
+me, but as the binary is built for a virtual architecture, then the one
+that&rsquo;s built in to each xvs release works out of the box.</p>
+<p>Whilst testing driver-mode support in newer kernels for VMware&rsquo;s vmxnet3
+virtual network adapter, I came across &mdash; I think &mdash;
+<a href="https://lore.kernel.org/linux-cve-announce/2025050349-CVE-2025-37799-bb83@gregkh/T">CVE-2025-37799</a>,
+which caused an awful lot of head scratching, and not a little panic,
+until I upgraded the kernel and the problem went away. Only afterwards
+did I find this CVE, which is what I suspect was the issue. If you&rsquo;re
+having problems then it might be worth checking that you&rsquo;re not affected.</p>
+<p>An example configuration file follows which has an IPv4 only service
+(&ldquo;foo&rdquo;) which is backed by a set of remote servers (which could be at
+redundant data centres) accessible by IP-in-IP, the variant for each
+backend determined by the address family of the VIP and real server
+address.</p>
+<p>There is also a service (&ldquo;bar&rdquo;) which has both IPv4 and IPv6 VIPs,
+each of which have one IPv4 and one IPv6 real server address. In this
+case the servers are all on the locally attached VLAN, so layer 2 DSR
+could be employed, but I&rsquo;ve chosen to use GRE encapsualation for
+development/testing purposes. More documentation to follow (yeah, I
+know, I know).</p>
+<p>I hope that this release is useful, and if you do happen to be using
+it and have any problems (or questions) please raise an issue on GitHub.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">bgp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">as_number</span><span class="p">:</span><span class="w"> </span><span class="m">65001</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">next_hop_6</span><span class="p">:</span><span class="w"> </span><span class="l">fd6e:eec8:76ac:ac1d:100::10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">peers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.1.10.254</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">vlans</span><span class="p">:</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="m">10.1.10.254</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">vlans6</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="l">fd6e:eec8:76ac:ac1d:100::254/64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">foo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">virtual</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.168.101.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tunnel-type</span><span class="p">:</span><span class="w"> </span><span class="l">ipip</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">servers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.10.10.100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.20.20.100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.30.30.100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.40.40.100</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">foo.example.net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/loadbalancer.htm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">policy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">http</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">bar</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">virtual</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">192.168.101.2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">fd6e:eec8:76ac:1337::2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tunnel-type</span><span class="p">:</span><span class="w"> </span><span class="l">gre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">servers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10.1.10.20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">fd6e:eec8:76ac:ac1d:100::20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">bar.example.net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/alive</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">policy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">http</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span></code></pre></div>
+
+        
+          <div class="blog-tags">
+            
+              
+              <a href="https://davidcoles.github.io/tags/vc5/">vc5</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/xvs/">xvs</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/xdp/">XDP</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/ebpf/">eBPF</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/ipv6/">IPv6</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/ip-in-ip/">IP-in-IP</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/gre/">GRE</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/fou/">FOU</a>&nbsp;
+            
+              
+              <a href="https://davidcoles.github.io/tags/gue/">GUE</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2025-07-31-the-ipv6-man-cometh%2f&amp;text=The%20IPv6-man%20cometh&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2025-07-31-the-ipv6-man-cometh%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2025-07-31-the-ipv6-man-cometh%2f&amp;title=The%20IPv6-man%20cometh" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2025-07-31-the-ipv6-man-cometh%2f&amp;title=The%20IPv6-man%20cometh" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2025-07-31-the-ipv6-man-cometh%2f&amp;title=The%20IPv6-man%20cometh" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fdavidcoles.github.io%2fposts%2f2025-07-31-the-ipv6-man-cometh%2f&amp;description=The%20IPv6-man%20cometh" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/posts/2024-12-26-intel-x710-update/">Intel X710 Update</a></li>
+                
+                    <li><a href="/posts/2024-07-06-intel-x710/">XDP and the Intel X710</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://davidcoles.github.io/posts/2024-12-26-intel-x710-update/" data-toggle="tooltip" data-placement="top" title="Intel X710 Update">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2025
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://davidcoles.github.io/">All the right words, but not necessarily in the right order</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.126.2</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha384-w5y/xIeYixWvfM+A1cEbmHPURnvyqmVg5eVENruEdDjcyRLUSNej7512JQGspFUr" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="https://davidcoles.github.io/js/main.js"></script>
+<script src="https://davidcoles.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://davidcoles.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
